@@ -18,10 +18,14 @@ const updateClientData = async (id: string, data: Clients) => {
   });
   return responseClient;
 };
+
 const deleteClientData = async (id: string) => {
   const responseClient = await ClientModel.remove({ _id: id });
   return responseClient;
 };
+
+
+
 export {
   insertClient,
   getClientsData,

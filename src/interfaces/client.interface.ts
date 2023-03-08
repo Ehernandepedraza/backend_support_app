@@ -1,5 +1,4 @@
 export interface Requests {
-  id: number;
   title: string;
   comment: string;
   startdate: string;

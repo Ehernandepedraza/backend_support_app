@@ -9,7 +9,7 @@ import {
 /* import { checkJwt } from "../middleware/session"; */
 
 const router = Router();
-router.get("/:id",/*  checkJwt, */ getClient);
+router.get("/:id", /*  checkJwt, */ getClient);
 router.get("/", /* checkJwt, */ getClients);
 router.post("/", /* checkJwt, */ postClient);
 router.put("/:id", /* checkJwt, */ updateClient);
