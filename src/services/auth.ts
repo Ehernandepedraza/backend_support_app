@@ -9,6 +9,9 @@ const registerNewUser = async ({
   password,
   company,
   city,
+  name,
+  lastname,
+  phone,
   rol,
 }: User) => {
   const checkIs = await UserModel.findOne({ email });
@@ -21,6 +24,9 @@ const registerNewUser = async ({
     password: passHash,
     company: company,
     city: city,
+    name: name,
+    lastname: lastname,
+    phone: phone,
     rol: "client",
   });
   return registerNewUser;

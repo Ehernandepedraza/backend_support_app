@@ -1,25 +1,34 @@
-import { Requests } from "../interfaces/client.interface";
-import ClientModel from "../models/clients";
+import { Request } from "../interfaces/request.interface";
+import RequestModel from "../models/requests";
 
-const deleteRequestFromClient = async (clientId: string, requestId: string) => {
-  const response = await ClientModel.updateOne(
-    { _id: clientId },
-    { $pull: { requests: { _id: requestId } } }
-  );
-  console.log(response);
-  return response;
+const createRequestForClient = async (client: Request) => {
+  const responseInsert = await RequestModel.create(client);
+  return responseInsert;
+};
+const getRequestsForClient = async () => {
+  const responseClient = await RequestModel.find({});
+  return responseClient;
 };
 
-const createRequestForClient = async (
-  clientId: string,
-  newRequestData: any
-) => {
-  const response = await ClientModel.updateOne(
-    { _id: clientId },
-    { $push: { requests: newRequestData } }
+const updateRequestsForClient = async (id: string, data: Request) => {
+  const responseClient = await RequestModel.findOneAndUpdate(
+    { _id: id },
+    data,
+    {
+      new: true,
+    }
   );
-  
-  return response;
+  return responseClient;
 };
 
-export { deleteRequestFromClient, createRequestForClient };
+const deleteRequestFromClient = async (id: string) => {
+  const responseClient = await RequestModel.remove({ _id: id });
+  return responseClient;
+};
+
+export {
+  deleteRequestFromClient,
+  createRequestForClient,
+  getRequestsForClient,
+  updateRequestsForClient,
+};

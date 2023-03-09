@@ -2,31 +2,56 @@ import { Request, response, Response } from "express";
 import {
   createRequestForClient,
   deleteRequestFromClient,
+  getRequestsForClient,
+  updateRequestsForClient,
 } from "../services/clientsRequest";
 
 import { handleHttp } from "../utils/error.handle";
 
-const deleteClientRequest = async ({ params }: Request, res: Response) => {
+const getClientRequests = async (req: Request, res: Response) => {
   try {
-    const { clientId, requestId } = params;
-    const response = await deleteRequestFromClient(clientId, requestId);
+    const response = await getRequestsForClient();
     res.send(response);
   } catch (e) {
-    handleHttp(res, "ERROR_DELETE_CLIENT");
+    handleHttp(res, "ERROR_GET_CLIENTS");
   }
 };
 
-const createClientRequest = async (
+const updateClientRequest = async (
   { params, body }: Request,
   res: Response
 ) => {
   try {
-    const { clientId } = params;
-    const response = await createRequestForClient(clientId, body);
+    const { id } = params;
+    const response = await updateRequestsForClient(id, body);
+    res.send(response);
+  } catch (e) {
+    handleHttp(res, "ERROR_UPDATE_CLIENT");
+  }
+};
+
+const createClientRequest = async ({ body }: Request, res: Response) => {
+  try {
+    const responseClient = await createRequestForClient(body);
+    res.send(responseClient);
+  } catch (e) {
+    handleHttp(res, "ERROR_POST_CLIENT");
+  }
+};
+
+const deleteClientRequest = async ({ params }: Request, res: Response) => {
+  try {
+    const { id } = params;
+    const response = await deleteRequestFromClient(id);
     res.send(response);
   } catch (e) {
     handleHttp(res, "ERROR_DELETE_CLIENT");
   }
 };
 
-export { deleteClientRequest, createClientRequest };
+export {
+  getClientRequests,
+  updateClientRequest,
+  createClientRequest,
+  deleteClientRequest,
+};
