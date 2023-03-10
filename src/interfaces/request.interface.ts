@@ -5,4 +5,5 @@ export interface Request {
   startDate: string;
   client: string;
   agent: string;
+  status: string;
 }

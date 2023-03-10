@@ -1,12 +1,6 @@
 import { model, Schema } from "mongoose";
-interface Request {
-  _id: any;
-  title: string;
-  comment: string;
-  startDate: string;
-  client: string;
-  agent: string;
-}
+import { Request } from "../interfaces/request.interface";
+
 const RequestSchema = new Schema<Request>({
   client: {
     type: String,
@@ -14,9 +8,9 @@ const RequestSchema = new Schema<Request>({
   },
   agent: { type: String, required: true },
   title: { type: String, required: true },
-  comment: { type: String, required: true },
   startDate: { type: String, required: true },
+  status: { type: String, required: true },
 });
 
-const RequestModel = model("requests", RequestSchema);
+const RequestModel = model("Requests", RequestSchema);
 export default RequestModel;

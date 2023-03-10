@@ -4,7 +4,7 @@ import {
   deleteClientRequest,
   getClientRequests,
   updateClientRequest,
-} from "../controllers/clientsRequest";
+} from "../controllers/requests";
 
 /* import { checkJwt } from "../middleware/session"; */
 

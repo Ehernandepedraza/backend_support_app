@@ -4,7 +4,7 @@ import {
   deleteRequestFromClient,
   getRequestsForClient,
   updateRequestsForClient,
-} from "../services/clientsRequest";
+} from "../services/requests";
 
 import { handleHttp } from "../utils/error.handle";
 
